@@ -1,0 +1,59 @@
+# Documentación del Proyecto de Servicio de Recomendaciones
+
+## 1. Lenguaje de Programación
+
+**Decisión**: Se ha elegido **Python** como lenguaje de programación para este proyecto.
+
+**Justificación**:
+- Python es conocido por su sintaxis clara y sencilla, lo que facilita el desarrollo rápido y la mantenibilidad del código.
+- Posee una gran cantidad de bibliotecas y frameworks para el desarrollo de APIs, como Flask y FastAPI, que son ampliamente utilizados y bien documentados.
+- La integración con servicios de IA y manejo de archivos JSON es eficiente en Python, dado su soporte nativo y bibliotecas robustas.
+
+## 2. Frameworks/Toolkits
+
+**Decisión**: Se ha seleccionado **Flask** como framework para el desarrollo del API REST.
+
+**Justificación**:
+- **Flask** es un microframework framework moderno, Es conocido por su simplicidad y flexibilidad, lo que lo convierte en una opción popular para crear aplicaciones web y APIs
+
+## 3. Tecnología
+
+**Decisión**: Uso de un archivo **JSON** para almacenar recomendaciones predeterminadas y un servicio externo de **IA** para recomendaciones.
+
+**Justificación**:
+- Dado que las recomendaciones predeterminadas son pocas y estáticas, un archivo JSON es suficiente para almacenar estos datos sin necesidad de una base de datos completa.
+- La elección de un servicio de IA como componente externo permite proporcionar recomendaciones más inteligentes y personalizadas.
+
+## 4. Estándares de Programación (Patrones)
+
+**Decisión**: Se ha decidido seguir el patrón **MVC (Model-View-Controller)** para organizar el código.
+
+**Justificación**:
+- El patrón MVC asegura una separación clara de preocupaciones, manteniendo la lógica de negocio, la presentación y el control de flujo bien separados.
+- En el contexto de una API, el controlador manejará las solicitudes, el modelo gestionará la lógica de negocio (como el acceso a recomendaciones desde JSON o servicios de IA), y la vista será la estructura de datos devuelta como respuesta.
+
+## 5. Argumentos que Recibe y Responde el API
+
+### **Endpoint**: `/recomendaciones`
+
+- **Método**: `POST`
+- **Descripción**: Permite obtener recomendaciones basadas en el input del usuario.
+
+- **Parámetros de Entrada**:
+  - `recommendationtype: str`: Define el tipo de recomendación ingresada(`genero`, `lugar`, `cancion`).
+  - `input: str`: Nombre del lugar, canción o género(ej. `Blue Note`, `Jazz`, `Amor`).
+  - `conectionType: str`: De donde quiere recibir su recomendación (ej. `ia`, `json`).
+
+- **Respuesta**:
+    ```json
+    {
+      "place": "New York", 
+      "song": "Juicy"
+   }
+    ```
+
+**Justificación**:
+- La estructura de los argumentos permite flexibilidad en la API, permitiendo al usuario elegir entre recomendaciones predeterminadas o IA.
+- La respuesta sigue un formato JSON estandarizado, facilitando la integración con otras aplicaciones y servicios.
+
+---

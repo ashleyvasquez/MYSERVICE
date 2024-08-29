@@ -1,0 +1,47 @@
+{
+    "recommendations": {
+      "places": {
+        "Paris": {
+          "song": "La Vie en Rose",
+          "genre": "Chanson"
+        },
+        "New York": {
+          "song": "Empire State of Mind",
+          "genre": "Hip-Hop"
+        },
+        "Tokyo": {
+          "song": "Sakura Sakura",
+          "genre": "Traditional"
+        }
+      },
+      "genres": {
+        "Chanson": {
+          "song": "La Vie en Rose",
+          "place": "Paris"
+        },
+        "Hip-Hop": {
+          "song": "Juicy",
+          "place": "New York"
+        },
+        "Traditional": {
+          "song": "Sakura Sakura",
+          "place": "Tokyo"
+        }
+      },
+      "songs": {
+        "La Vie en Rose": {
+          "genre": "Chanson",
+          "place": "Paris"
+        },
+        "Empire State of Mind": {
+          "genre": "Hip-Hop",
+          "place": "New York"
+        },
+        "Sakura Sakura": {
+          "genre": "Traditional",
+          "place": "Tokyo"
+        }
+      }
+    }
+  }
+  

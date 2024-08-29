@@ -1,0 +1,105 @@
+openapi: 3.0.0
+info:
+  title: API de Recomendaciones
+  description: API para obtener recomendaciones de géneros, canciones o lugares basadas en diferentes métodos.
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000
+    description: Servidor local para desarrollo
+paths:
+  /recommendations:
+    post:
+      summary: Obtener recomendación
+      description: Obtiene una recomendación basada en el tipo, valor y método de conexión especificado.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: Tipo de recomendación. Puede ser 'genre', 'song', o 'place'.
+                  example: 'genre'
+                value:
+                  type: string
+                  description: Valor de la recomendación.
+                  example: 'Hip-Hop'
+                connection_method:
+                  type: string
+                  description: Método de conexión. Puede ser 'json' o 'ai'.
+                  example: 'json'
+              required:
+                - type
+                - value
+                - connection_method
+      responses:
+        '200':
+          description: Recomendación obtenida con éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  recommendation:
+                    type: string
+                    description: Recomendación proporcionada.
+                    example: {"place": "New York", "song": "Juicy"}
+        '400':
+          description: Solicitud inválida debido a un tipo de recomendación no válido, valor no proporcionado o método de conexión no válido.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Mensaje de error.
+                    example: 'Tipo de recomendación no válido. Debe ser "genre", "song" o "place".'
+        '404':
+          description: No se encontraron recomendaciones para el tipo y valor proporcionados.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Mensaje de error.
+                    example: 'No se encontraron recomendaciones para "genre" con valor "rock".'
+        '500':
+          description: Error interno del servidor al obtener la recomendación de AI.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Mensaje de error.
+                    example: 'Error al obtener la recomendación de AI: [detalle del error].'
+components:
+  schemas:
+    RecommendationRequest:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Tipo de recomendación. Puede ser 'genre', 'song', o 'place'.
+        value:
+          type: string
+          description: Valor de la recomendación.
+        connection_method:
+          type: string
+          description: Método de conexión. Puede ser 'json' o 'ai'.
+      required:
+        - type
+        - value
+        - connection_method
+    RecommendationResponse:
+      type: object
+      properties:
+        recommendation:
+          type: string
+          description: Recomendación proporcionada.
